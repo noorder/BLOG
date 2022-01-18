@@ -4,21 +4,25 @@ namespace application\controllers;
 
 use application\core\Controller;
 
-class MainController extends Controller
+class AdminController extends Controller
 {
+
+    public function __construct($route)
+    {  
+        parent::__construct($route);
+        $this->view->layout = 'admin';
+    }
+
+
+
     public function loginAction()
     {
         $this->view->render('Вход');
     }
 
-    public function logoutAction()
-    {
-        $this->view->render('Выход');
-    }
-
     public function addAction()
     {
-        $this->view->render('Добавить');
+        $this->view->render('Добавить пост');
     }
 
     public function editAction()
@@ -26,8 +30,13 @@ class MainController extends Controller
         $this->view->render('Редактировать');
     }
 
+    public function logoutAction()
+    {
+        exit('Выход');
+    }
+
     public function deleteAction()
     {
-        $this->view->render('Удалить');
+        exit('Удаление');
     }
 }

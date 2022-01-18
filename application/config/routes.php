@@ -8,12 +8,12 @@ return [
 
     'about' => [
         'controller' => 'main',
-        'action' => 'action',
+        'action' => 'about',
     ],
 
     'contact' => [
         'controller' => 'main',
-        'action' => 'action',
+        'action' => 'contact',
     ],
 
     'post' => [
@@ -25,27 +25,27 @@ return [
 
 //AdminController
 
-'login' => [
+'admin/login' => [
     'controller' => 'admin',
     'action' => 'login',
 ],
 
-'logout' => [
+'admin/logout' => [
     'controller' => 'admin',
     'action' => 'logout',
 ],
 
-'add' => [
+'admin/add' => [
     'controller' => 'admin',
     'action' => 'add',
 ],
 
-'edit' => [
+'admin/edit' => [
     'controller' => 'admin',
     'action' => 'edit',
 ],
 
-'delete' => [
+'admin/delete' => [
     'controller' => 'admin',
     'action' => 'delete',
 ],

@@ -3,6 +3,7 @@
 namespace application\controllers;
 
 use application\core\Controller;
+use application\core\View;
 
 class MainController extends Controller
 {
@@ -18,6 +19,9 @@ class MainController extends Controller
 
     public function contactAction()
     {
+        if(!empty($_POST)) {
+            $this->view->message('success', 'форма работает');
+        }
         $this->view->render('Контакты');
     }
 
