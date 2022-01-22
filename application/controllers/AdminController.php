@@ -60,7 +60,11 @@ class AdminController extends Controller
         $this->view->render('Редактировать');
     }
 
-
+    public function deleteAction()
+    {
+        debug($this->route['id']);
+        exit('Удаление');
+    }
     
     public function logoutAction()
     {
@@ -68,10 +72,7 @@ class AdminController extends Controller
         $this->view->redirect('/admin/login');
     }
 
-    public function deleteAction()
-    {
-        exit('Удаление');
-    }
+
 
     public function postsAction()
     {
