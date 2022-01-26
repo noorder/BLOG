@@ -40,8 +40,13 @@ class AdminController extends Controller
         if (!empty($_POST)) {
             if (!$this->model->postValidate($_POST, 'add')) {
                 $this->view->message('error', $this->model->error);
-            }            
-            $this->view->message('success', 'OK');
+            }
+            $id = $this->model->postAdd($_POST);
+            if (!$id) {
+                $this->view->message('error', 'Пост не добавлен');
+            }
+            $this->model->postUploadImage($_FILES['img']['tmp_name'], $id);
+            $this->view->message('success', 'Пост добавлен');
         }
         $this->view->render('Добавить пост');
     }
@@ -50,22 +55,33 @@ class AdminController extends Controller
 
     public function editAction()
     {
+
+
+        if (!$this->model->isPostExists($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
         if (!empty($_POST)) {
             if (!$this->model->postValidate($_POST, 'edit')) {
                 $this->view->message('error', $this->model->error);
-            }            
+            }
             $this->view->message('SUCCESS', 'OK');
         }
-        
-        $this->view->render('Редактировать');
+        $vars = [
+            'data' => $this->model->postData($this->route['id']),
+        ];
+
+        $this->view->render('Редактировать пост', $vars);
     }
 
     public function deleteAction()
     {
-        debug($this->route['id']);
-        exit('Удаление');
+        if (!$this->model->isPostExists($this->route['id'])) {
+            $this->view->errorCode(404);
+        }
+        $this->model->postDelete($this->route['id']);
+        $this->view->redirect('admin/posts');
     }
-    
+
     public function logoutAction()
     {
         unset($_SESSION['admin']);

@@ -47,4 +47,6 @@ abstract class Controller
     {
         return in_array($this->route['action'], $this->acl[$key]);
     }
+
+    
 }

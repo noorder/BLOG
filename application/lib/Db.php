@@ -37,4 +37,9 @@ class Db
         $result = $this->query($sql, $params);
         return $result->fetchColumn(); //Возвращает данные одного столбца следующей строки результирующей таблицы. Если в результате запроса строк больше нет, функция вернёт false.
     }
+
+    public function lastInsertId()
+    {
+        return $this->db->lastInsertId();
+    }
 }
